@@ -27,7 +27,7 @@ class App extends Component {
       this.setState(oldState => {
         return {
           victims: [`Casualty: ${dead} by ${weapon}`, ...oldState.victims],
-          names: oldState.names.filter((name, index, names) => {
+          names: oldState.names.filter((name) => {
             return name !== dead
           })
         }
@@ -57,11 +57,11 @@ class App extends Component {
           </button>
         </form>
         <h2>Contracts:</h2>
-        {this.state.names.map((name, index, names) => {
+        {this.state.names.map((name) => {
           return <li>{name}</li>
         })}
         <h2>Contracts fulfilled:</h2>
-        {this.state.victims.map((victim, index, victims) => {
+        {this.state.victims.map((victim) => {
           return <div>{victim}</div>
         })}
 
