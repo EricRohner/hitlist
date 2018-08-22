@@ -20,11 +20,13 @@ class App extends Component {
     if (this.state.names.length > 0) {
       const dead = this.state.names[Math.floor(Math.random() * this.state.names.length)]
       const weapons = ['\u2693', '\u2694', '\u26CF', '\u26BE', '\u2622', '\u2623', '\u{1F346}', '\u2604', '\u231B',
-        '\u261D', '\u{1F30B}', '\u{1F3F9}', '\u{1F409}', '\u{1F494}', '\u{1f525}', '\u{1F489}', '\u{1F982}', '\u{1F991}']
+        '\u261D', '\u{1F30B}', '\u{1F3F9}', '\u{1F409}', '\u{1F494}', '\u{1f525}', '\u{1F489}', '\u{1F982}', '\u{1F991}',
+        '\u26A1', '\u26F7', '\u{1F4A3}', '\u{1F43F}', '\u{1F985}', '\u{1F41D}', '\u{1F6F4}', '\u{1F30A}', '\u{1F94C}',
+        '\u{1F6D2}', '\u{1F4B0}', '\u{1F459}']
       const weapon = weapons[Math.floor(Math.random() * weapons.length)]
       this.setState(oldState => {
         return {
-          victims: [weapon + ' ' + dead, ...oldState.victims],
+          victims: [`Casualty: ${dead} by ${weapon}`, ...oldState.victims],
           names: oldState.names.filter((name, index, names) => {
             return name !== dead
           })
@@ -33,12 +35,10 @@ class App extends Component {
     }
   }
 
-
-
   render() {
     return (
-      <div className = 'App'>
-        <h1>Hello, I'm your personal assassin!</h1>
+      <div className='App'>
+        <h1>Hello, I'm your personal assassin! {`\u{1F638}`}</h1>
         <p>Be careful! Once you give the order to kill I cannot be stopped.</p>
         <p>I will make sure one of your enemies meets their doom and</p>
         <p>report back with their cause of death. I do my work very quickly.</p>
@@ -53,18 +53,17 @@ class App extends Component {
             Add victim
           </button>
           <button type="button" onClick={() => this.kill()}>
-            Kill!
+            Execute
           </button>
         </form>
-        <h2>Hit List:</h2>
+        <h2>Contracts:</h2>
         {this.state.names.map((name, index, names) => {
           return <li>{name}</li>
         })}
-        <h2>Dead:</h2>
+        <h2>Contracts fulfilled:</h2>
         {this.state.victims.map((victim, index, victims) => {
           return <div>{victim}</div>
         })}
-
 
       </div>
     )
